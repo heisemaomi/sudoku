@@ -65,7 +65,7 @@ export function drawBoard(
                 }
 
                 game.selectCell(row, col);
-                drawBoard(game, container);
+                drawBoard(game, container, onComplete);
             });
 
             grid.appendChild(cell);
@@ -99,4 +99,16 @@ export function drawBoard(
     }
 
     container.appendChild(numbers);
+
+    // clear button
+    const clearButton = document.createElement("button");
+    clearButton.className = "number-button clear-button";
+    clearButton.textContent = "Clear";
+
+    clearButton.onclick = () => {
+        game.clearCell();
+        drawBoard(game, container, onComplete);
+    };
+
+    numbers.appendChild(clearButton);
 }

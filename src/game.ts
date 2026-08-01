@@ -27,6 +27,23 @@ export class Game {
         this.selectedCol = col;
     }
 
+    clearCell() {
+        if (
+            this.selectedRow < 0 ||
+            this.selectedCol < 0
+        ) {
+            return;
+        }
+
+        if (
+            this.fixed[this.selectedRow][this.selectedCol]
+        ) {
+            return;
+        }
+
+        this.board[this.selectedRow][this.selectedCol] = 0;
+    }
+
     setNumber(value: number) {
         if (
             this.selectedRow < 0 ||
