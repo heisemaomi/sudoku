@@ -52,6 +52,66 @@ const checkWin = () => {
 };
 
 
+// keyboard control
+document.addEventListener("keydown", (event) => {
+    const key = event.key;
+
+    let row = game.selectedRow;
+    let col = game.selectedCol;
+
+    // move selection with arrow keys
+    if (key === "ArrowUp") {
+        row = Math.max(0, row - 1);
+    }
+
+    if (key === "ArrowDown") {
+        row = Math.min(8, row + 1);
+    }
+
+    if (key === "ArrowLeft") {
+        col = Math.max(0, col - 1);
+    }
+
+    if (key === "ArrowRight") {
+        col = Math.min(8, col + 1);
+    }
+
+    if (
+        key.startsWith("Arrow")
+    ) {
+        // if no cell selected, start at top-left
+        if (game.selectedRow < 0 || game.selectedCol < 0) {
+            game.selectCell(0, 0);
+        } else {
+            game.selectCell(row, col);
+        }
+
+        drawBoard(game, boardContainer, checkWin);
+        return;
+    }
+
+
+    // number keys 1-9
+    if (key >= "1" && key <= "9") {
+        game.setNumber(Number(key));
+
+        if (game.isComplete()) {
+            checkWin();
+        }
+
+        drawBoard(game, boardContainer, checkWin);
+    }
+
+
+    // clear cell
+    if (key === "Delete" || key === "Backspace") {
+        game.clearCell();
+
+        drawBoard(game, boardContainer, checkWin);
+    }
+});
+
+
 // new puzzle
 newGameButton.onclick = () => {
     const puzzle = createPuzzle();
