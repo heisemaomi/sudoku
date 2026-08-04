@@ -35,6 +35,14 @@ export function drawBoard(
                 cell.classList.add("right-border");
             }
 
+            // highlight row and column
+            if (
+                row === game.selectedRow ||
+                col === game.selectedCol
+            ) {
+                cell.classList.add("highlight");
+            }
+            
             // selected cell
             if (
                 row === game.selectedRow &&
@@ -46,6 +54,8 @@ export function drawBoard(
             // fixed puzzle numbers
             if (game.fixed[row][col]) {
                 cell.classList.add("fixed");
+            } else if (game.board[row][col] !== 0) {
+                cell.classList.add("user-entered-number");
             }
 
             // invalid numbers

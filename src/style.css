@@ -25,12 +25,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --cell-bg: #ffffff;
+  --cell-border: #999999;
+  --cell-selected: #cfe8ff;
+  --cell-fixed: #eeeeee;
+  --cell-invalid: #ffcccc;
+  --box-border: #000000;
+
   @media (max-width: 1024px) {
     font-size: 16px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
     --text-h: #f3f4f6;
@@ -48,10 +55,38 @@
   #social .button-icon {
     filter: invert(1) brightness(2);
   }
+} */
+
+body.dark {
+  --text: #9ca3af;
+  --text-h: #f3f4f6;
+  --bg: #16171d;
+  --border: #2e303a;
+  --code-bg: #1f2028;
+  --accent: #c084fc;
+  --accent-bg: rgba(192, 132, 252, 0.15);
+  --accent-border: rgba(192, 132, 252, 0.5);
+  --social-bg: rgba(47, 48, 58, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+
+  --cell-bg: #2a2a2a;
+  --cell-border: #777777;
+  --cell-selected: #2f5f99;
+  --cell-fixed: #444444;
+  --cell-invalid: #7a2c2c;
+  --box-border: #dddddd;
+}
+
+body.dark #social .button-icon {
+  filter: invert(1) brightness(2);
 }
 
 body {
   margin: 0;
+  background: var(--bg);
+  color: var(--text);
 }
 
 h1,
@@ -166,6 +201,8 @@ code {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background: var(--bg);
+  color: var(--text);
 }
 
 #center {
@@ -308,29 +345,37 @@ code {
     aspect-ratio: 1 / 1;
     font-size: clamp(16px, 5vw, 32px);
     padding: 0;
-    border: 1px solid #999;
+    border: 1px solid var(--cell-border);
     box-sizing: border-box;
+
+    background: var(--cell-bg);
+    color: var(--text-h);
 }
 
 .top-border {
-    border-top: 3px solid black;
+    border-top: 3px solid var(--box-border);
 }
 
 .left-border {
-    border-left: 3px solid black;
+    border-left: 3px solid var(--box-border);
 }
 
 .bottom-border {
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid var(--box-border);
 }
 
 .right-border {
-    border-right: 3px solid black;
+    border-right: 3px solid var(--box-border);
 }
 
 .selected {
-    background-color: lightblue;
+    background-color: var(--cell-selected);
 }
+
+body.dark .selected {
+    background-color: #1565c0;
+}
+
 
 .number-pad {
     display: grid;
@@ -360,12 +405,24 @@ code {
 
 .fixed {
     font-weight: bold;
-    background-color: #eee;
+    background-color: var(--cell-fixed);
+}
+
+.highlight {
+    background-color: #277dbb;
+}
+
+.fixed.highlight {
+    background-color: #90caf9;
 }
 
 .invalid {
-    background-color: #ffcccc;
+    background-color: var(--cell-invalid);
     border: 2px solid red;
+}
+
+.user-entered-number {
+    color: #e11fb1;
 }
 
 /* Emoji icon falling */

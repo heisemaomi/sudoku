@@ -17,6 +17,35 @@ const game = new Game(
     puzzle.fixed
 );
 
+// theme button
+const themeButton = document.createElement("button");
+
+function updateThemeButton() {
+    if (document.body.classList.contains("dark")) {
+        themeButton.textContent = "☀️ Light";
+    } else {
+        themeButton.textContent = "🌙 Dark";
+    }
+}
+
+// load saved theme
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+}
+
+updateThemeButton();
+
+themeButton.onclick = () => {
+    const dark = document.body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "theme",
+        dark ? "dark" : "light"
+    );
+
+    updateThemeButton();
+};
+
 // timer
 const timer = document.createElement("div");
 timer.id = "timer";
@@ -32,10 +61,13 @@ newGameButton.textContent = "New Game";
 // board container
 const boardContainer = document.createElement("div");
 
+
+
 // add elements to page
 app.appendChild(timer);
 app.appendChild(message);
 app.appendChild(newGameButton);
+app.appendChild(themeButton);
 app.appendChild(boardContainer);
 
 
