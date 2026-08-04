@@ -2,6 +2,7 @@ import "./style.css";
 import { Game } from "./game";
 import { createPuzzle } from "./generator";
 import { drawBoard } from "./ui";
+import { celebrate } from "./effects";
 
 const app = document.querySelector<HTMLDivElement>("#app");
 
@@ -49,6 +50,7 @@ setInterval(() => {
 const checkWin = () => {
     message.textContent =
         `🎉 Congratulations! Time: ${game.getElapsedSeconds()}s`;
+    celebrate();
 };
 
 
@@ -137,3 +139,11 @@ drawBoard(
     boardContainer,
     checkWin
 );
+
+// Test botton for celebrate
+// const button = document.createElement("button");
+// button.textContent = "Celebrate";
+// button.onclick = () => {
+//     celebrate();
+// };
+// app.appendChild(button);
