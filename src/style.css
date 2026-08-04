@@ -453,3 +453,16 @@ body.dark .selected {
         opacity: 0;
     }
 }
+
+/* message board */
+
+#message-list {
+    width: min(90vw, 500px);
+    margin-top: 20px;
+    text-align: left;
+}
+
+#message-list div {
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+}

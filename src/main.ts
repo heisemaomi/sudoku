@@ -3,6 +3,7 @@ import { Game } from "./game";
 import { createPuzzle } from "./generator";
 import { drawBoard } from "./ui";
 import { celebrate } from "./effects";
+import { createMessageBoard } from "./messageBoard";
 
 const app = document.querySelector<HTMLDivElement>("#app");
 
@@ -62,7 +63,6 @@ newGameButton.textContent = "New Game";
 const boardContainer = document.createElement("div");
 
 
-
 // add elements to page
 app.appendChild(timer);
 app.appendChild(message);
@@ -70,6 +70,7 @@ app.appendChild(newGameButton);
 app.appendChild(themeButton);
 app.appendChild(boardContainer);
 
+createMessageBoard(app);
 
 // timer update
 setInterval(() => {
